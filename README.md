@@ -1,3 +1,4 @@
+[![Views](https://visitor-badge.laobi.icu/badge?page_id=piyushdhoka.drdo_docxsummarizer)](https://visitor-badge.laobi.icu/badge?page_id=piyushdhoka.drdo_docxsummarizer)
 Document Summarizer — quick start (Windows PowerShell)
 
 This repository contains a Streamlit UI and a FastAPI backend for summarizing documents.
