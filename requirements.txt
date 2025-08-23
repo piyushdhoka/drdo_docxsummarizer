@@ -1,0 +1,9 @@
+google-generativeai
+streamlit
+fastapi
+pydantic
+uvicorn
+PyPDF2
+pypdf
+python-docx
+beautifulsoup4
