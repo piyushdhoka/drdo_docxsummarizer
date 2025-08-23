@@ -8,10 +8,7 @@ import re
 load_dotenv()
 
 # Configure Gemini API
-if "GEMINI_API_KEY" in st.secrets:
-    api_key = st.secrets["GEMINI_API_KEY"]
-else:
-    api_key = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 print(f"DEBUG: API Key loaded: {GEMINI_API_KEY[:10] if GEMINI_API_KEY else 'None'}...")
 
 if not GEMINI_API_KEY:
