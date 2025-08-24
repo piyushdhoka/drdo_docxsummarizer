@@ -1,3 +1,4 @@
+[![Views](https://visitor-badge.laobi.icu/badge?page_id=piyushdhoka.drdo_docxsummarizer)](https://visitor-badge.laobi.icu/badge?page_id=piyushdhoka.drdo_docxsummarizer)
 Document Summarizer — quick start (Windows PowerShell)
 
 This repository contains a Streamlit UI and a FastAPI backend for summarizing documents.
@@ -35,6 +36,3 @@ Manual runs (if you prefer)
   .\venv\Scripts\Activate.ps1
   uvicorn fastapi_app:app --reload --host 0.0.0.0 --port 8000
 
-Notes
-- `.gitignore` excludes the `venv/` folder and common temporary files. The repo on GitHub does not contain your virtual environment.
-- If you want, I can add a small example `curl` or Python snippet that calls `/summarize`.
