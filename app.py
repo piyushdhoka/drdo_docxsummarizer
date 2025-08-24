@@ -200,6 +200,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
+    # Check Gemini configuration and show instructions if missing when running in Streamlit
+    from backend import GEMINI_CONFIGURED
+    if not GEMINI_CONFIGURED:
+        st.warning(
+            "Google Gemini API key not configured.\n\n"
+            "To deploy on Streamlit, add your key to `.streamlit/secrets.toml` like:\n"
+            "`GEMINI_API_KEY = \"your_api_key_here\"` or set the same in environment variables."
+        )
     # Header with modern design
     st.markdown('<h1 class="main-header">🚀 AI Document Summarizer</h1>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Transform any document into intelligent summaries with cutting-edge AI</p>', unsafe_allow_html=True)

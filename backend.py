@@ -1,20 +1,35 @@
 import os
-import google.generativeai as genai
-from dotenv import load_dotenv
 from typing import Literal
 import re
 
-# Load environment variables
+# Optional import of streamlit to read secrets when running on Streamlit
+try:
+    import streamlit as st
+except Exception:
+    st = None
+
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Load environment variables from .env when present
 load_dotenv()
 
-# Configure Gemini API
+# Try environment first, then Streamlit secrets (if available)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-print(f"DEBUG: API Key loaded: {GEMINI_API_KEY[:10] if GEMINI_API_KEY else 'None'}...")
+if not GEMINI_API_KEY and st is not None:
+    # st.secrets acts like a dict. Support common key names.
+    try:
+        GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY") or st.secrets.get("gemini_api_key")
+    except Exception:
+        GEMINI_API_KEY = GEMINI_API_KEY
 
-if not GEMINI_API_KEY:
-    raise ValueError("GEMINI_API_KEY not found in .env file")
-
-genai.configure(api_key=GEMINI_API_KEY)
+# Configure genai only if key is available. Don't raise on import to allow the app to
+# start and surface a user-friendly message in the UI when the key is missing.
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+    GEMINI_CONFIGURED = True
+else:
+    GEMINI_CONFIGURED = False
 
 def preprocess_text(text: str) -> str:
     """
