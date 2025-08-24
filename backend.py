@@ -9,9 +9,18 @@ except Exception:
     st = None
 
 import google.generativeai as genai
-from dotenv import load_dotenv
 
-# Load environment variables from .env when present
+# Optional dotenv support: don't crash if python-dotenv isn't installed
+try:
+    from dotenv import load_dotenv
+    _DOTENV_PRESENT = True
+except Exception:
+    # define a no-op loader so later code can call load_dotenv() safely
+    def load_dotenv(*a, **k):
+        return None
+    _DOTENV_PRESENT = False
+
+# Load environment variables from .env when present (no-op if package missing)
 load_dotenv()
 
 # Try environment first, then Streamlit secrets (if available)

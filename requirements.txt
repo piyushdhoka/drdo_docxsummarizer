@@ -7,3 +7,6 @@ PyPDF2
 pypdf
 python-docx
 beautifulsoup4
+
+# Optional helpers
+python-dotenv
